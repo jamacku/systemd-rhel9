@@ -40,7 +40,6 @@
 #include "strv.h"
 #include "strxcpyx.h"
 #include "udev-builtin.h"
-#include "utf8.h"
 
 #define ONBOARD_14BIT_INDEX_MAX ((1U << 14) - 1)
 #define ONBOARD_16BIT_INDEX_MAX ((1U << 16) - 1)
@@ -1196,9 +1195,6 @@ static int get_link_info(sd_device *dev, LinkInfo *info) {
 
         r = device_get_sysattr_value_filtered(dev, "phys_port_name", &info->phys_port_name);
         if (r >= 0) {
-                if (!utf8_is_valid(info->phys_port_name) || string_has_cc(info->phys_port_name, /* ok= */ NULL))
-                        return log_invalid_device_attr(dev, "phys_port_name", info->phys_port_name);
-
                 /* Check if phys_port_name indicates virtual device representor */
                 (void) sscanf(info->phys_port_name, "pf%*uvf%d", &info->vf_representor_id);
         }
