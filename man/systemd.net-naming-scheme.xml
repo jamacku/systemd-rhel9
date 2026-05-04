@@ -533,6 +533,12 @@
            <para>PCI slot number is now read from <constant>firmware_node/sun</constant> sysfs file.</para></listitem>
         </varlistentry>
 
+        <varlistentry>
+           <term><constant>rhel-9.9</constant></term>
+
+           <listitem><para>Same as naming scheme <constant>rhel-9.8</constant>.</para></listitem>
+        </varlistentry>
+
       </variablelist>
 
     <para>By default <constant>rhel-9.0</constant> is used.</para>
